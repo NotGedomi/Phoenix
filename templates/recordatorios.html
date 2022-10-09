@@ -1,0 +1,241 @@
+{% extends 'layout_ope_record.html' %}
+{% block link %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/Recordatorios.css')}}" />
+{% endblock %}
+{% block title %}
+<title>Phoenix - Recordatorios</title>
+{% endblock %}
+{% block body %}
+<!--FIN DEL SIDEBAR-->
+<!--INICIO DE CONTENIDOS-->
+<div class="contents">
+  <div class="alerta-top">
+    {% with msg=get_flashed_messages() %}
+    {% if msg %}
+    {% for msg in msg %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>¡Hola!</strong> {{ msg }}
+      <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  </div>
+  <div class="contentt content-active">
+    <div class="containermain">
+      <div id="content">
+        <main>
+          <!--Reemplazar-->
+          <ul class="box-info"></ul>
+          <!--OPERACIONES PRINCIPAL-->
+          <div class="operaciones-tabla">
+            <div class="order">
+              {% if data.0==null %}
+              <label style="color:#767676">No se han encontrado registros de recordatorio</label><br><br>
+              {% else: %}
+              <label style="color:#02E513">Hay registros de recordatorio</label><br><br>
+              {% endif %}
+              <div class="head">
+                <h3>Recordatorios</h3>
+                <i style="justify-content: center; cursor: default" class="bx bx-search"></i><input
+                  class="search" /><input type="checkbox" id="btn-modal" />
+                <label for="btn-modal" class="lbl-modal">+ Nuevo</label>
+                <!--INICIO DEL MODAL-->
+                <div class="modal">
+                  <div class="contenedor-modal">
+                    <header>Nuevo Recordatorio</header>
+                    <label for="btn-modal">X</label>
+                    <form action="/insert_recordatorio" method="POST">
+                      <div class="contenido">
+                        <!--Primera Linea-->
+                        <div class="cat-ben">
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Cuenta</span>
+                            <div class="custom-select">
+                              <select name="cuenta">
+                                <option value="0">Seleccionar:</option>
+                                {% for data2 in data2 %}
+                                <option value="{{ data2.0 }}">{{ data2.4 }}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Entidad o Beneficiario</span>
+                            <div class="custom-select">
+                              <select name="beneficiario">
+                                <option value="0">Seleccionar:</option>
+                                {% for data3 in data3 %}
+                                <option value="{{ data3.0 }}">{{ data3.1 }}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span for="fecha-op-modal" class="op-nueva-getdatos">Categoría</span>
+                            <div class="custom-select">
+                              <select name="categoria">
+                                <option value="0">Seleccionar:</option>
+                                <option value="1">Transporte</option>
+                                <option value="2">Vehiculos</option>
+                                <option value="3">Comidas y bebidas</option>
+                                <option value="4">Vivienda</option>
+                                <option value="5">Compras</option>
+                                <option value="6">Inversiones</option>
+                                <option value="7">Gastos financieros</option>
+                                <option value="8">Entretenimiento</option>
+                                <option value="9">Educacion</option>
+                                <option value="10">Viajes</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Descripción</span>
+                            <input placeholder="Ingrese una descripcion" type="text" name="descripcion" required>
+                          </div>
+                        </div>
+                        <!--Segunda Linea-->
+                        <div class="cat-ben">
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Operación</span>
+                            <div class="custom-select">
+                              <select name="operacion">
+                                <option value="0">Seleccionar:</option>
+                                <option value="1">Ingresos</option>
+                                <option value="2">Gasto</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span for="fecha-op-modal" class="op-nueva-getdatos">Moneda</span>
+                            <div class="custom-select">
+                              <select name="moneda">
+                                <option value="0">Seleccionar:</option>
+                                <option value="1">PEN</option>
+                                <option value="2">USD</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span for="fecha-op-modal" class="op-nueva-getdatos">Pago</span>
+                            <div class="custom-select">
+                              <select name="pago">
+                                <option value="0">Seleccionar:</option>
+                                <option value="1">Dinero en efectivo</option>
+                                <option value="2">Tarjeta de credito</option>
+                                <option value="3">Tarjeta de debito</option>
+                                <option value="4">Pago por movil</option>
+                                <option value="5">Pago web</option>
+                                <option value="6">Transferencia bancaria</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Monto</span>
+                            <input placeholder="00.00" type="text" name="monto"
+                              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                          </div>
+                        </div>
+                        <!--Tercera Linea-->
+                        <div class="cat-ben">
+                          <div class="categoria-modal">
+                            <span for="fecha-op-modal" class="op-nueva-getdatos">Frecuencia</span>
+                            <div class="custom-select">
+                              <select name="frecuencia">
+                                <option value="0">Seleccionar:</option>
+                                <option value="1">Solo una vez</option>
+                                <option value="2">Pago recurrente</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span for="fecha-op-modal" class="op-nueva-getdatos">Notificación</span>
+                            <div class="custom-select">
+                              <select name="notificacion">
+                                <option value="0">Seleccionar:</option>
+                                <option value="1">Ninguno</option>
+                                <option value="2">Fecha limite</option>
+                                <option value="3">Un dia antes</option>
+                                <option value="4">Tres dias antes</option>
+                                <option value="5">Una semana antes</option>
+                                <option value="6">Dos semanas antes</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span for="fecha-op-modal" class="op-nueva-getdatos">Fecha de Pago</span>
+                            <input type="date" required id="fecha-op-modal" name="fecha" min="2022-01-01" max="2022-12-31">
+                          </div>
+                        </div>
+                        <div class="cat-ben">
+                          <div class="categoria-modal">
+                            <div class="buttons">
+                              <input type="submit" value="Enviar" />
+                            </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!--FIN DEL MODAL-->
+      <!--INICIO DE TABLA DE RECORDATORIOS-->
+      <table class="scroll">
+        <thead>
+          <tr>
+            <th>Entidad o Beneficiario</th>
+            <th>Categoria</th>
+            <th>Cuenta</th>
+            <th>Banco</th>
+            <th>Monto</th>
+            <th>Moneda</th>
+            <th>Frecuencia de pago</th>
+            <th>Notificación</th>
+            <th>Descripcion</th>
+            <th>Fecha de Pago</th>
+            <th>Estado</th>
+            <th>Extra</th>
+          </tr>
+        </thead>
+        <tbody class="wrapper">
+          {% for data in data %}
+          <tr style="margin: 0px;">
+            <td><img src="{{ data.43 }}">
+              <p>{{ data.42 }}</p>
+            </td>
+            <td>{{ data.22 }}</td>
+            <td>{{ data.16 }}</td>
+            <td>{{ data.39 }}</td>
+            {% if data.45=='Ingresos' %}
+            <td style="color:#02E513">+{{ data.4 }}</td>
+            <td style="color:#02E513">{{ data.24 }}</td>
+            {% else: %}
+            <td style="color:#F50808">-{{ data.4 }}</td>
+            <td style="color:#F50808">{{ data.24 }}</td>
+            {% endif %}
+            <td>{{ data.28 }}</td>
+            <td>{{ data.30 }}</td>
+            <td>{{ data.11 }}</td>
+            <td>{{ data.9 }}</td>
+            <td><span class="status completed">Pendiente</span></td>
+            <td><a class="delete" href="/delete_recordatorio/{{ data.0 }}">Delete</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </main>
+</div>
+</div>
+</div>
+</div>
+<script src="{{url_for('static',filename='js/Sidebar.js')}}"></script>
+<script src="{{url_for('static',filename='js/script.js')}}"></script>
+</body>
+
+</html>
+{% endblock %}

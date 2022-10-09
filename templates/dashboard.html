@@ -1,0 +1,128 @@
+{% extends 'layout_dashboard.html' %}
+    {% block body %}
+    <div class="contents">
+        <div class="alerta-top">
+            {% with msg=get_flashed_messages() %}
+            {% if msg %}
+            {% for msg in msg %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>¡Hola!</strong> {{ msg }}
+                  <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <div class="contentt content-active">
+            <div class="containermain">
+                <div id="content">
+                    <main>
+                        <ul class="box-info">
+                            <li> <i class='bx bxs-calendar-check'></i> <span class="text"><p style="font-size: 15px">Proximo Pago</p><h2 style="font-size: 25px">Senati</h2><p style="font-size: 14px">05 de Julio</p> </span> </li>
+                            <li> <img class="bx" src="{{url_for('static',filename='img/user.jpg')}}" alt="profileImg"><span class="text"> <h3>Usuario</h3> <p>{{ email }}</p></span> </li>
+                            {% if data3.0==none %}
+                               <li> <i class='bx bxs-dollar-circle'></i> <span class="text"> <p>Saldo Actual</p><h3>00.00 PEN</h3> </span> </li>
+                            {% else: %}
+                               <li> <i class='bx bxs-dollar-circle'></i> <span class="text"> <p>Saldo Actual</p><h3>{{ data3.0 }} PEN</h3> </span> </li>   
+                            {% endif %}
+                        </ul>
+                        <div class="table-data">
+                            <div class="order">
+                                {% if data.0==null %}
+                                    <label style="color:#767676">No se han encontrado registros de recordatorio</label><br><br>
+                                {% else: %}
+                                    <label style="color:#02E513">Hay registros de recordatorio</label><br><br>    
+                                {% endif %}    
+                                <div class="head">
+                                    <h3>Ultimos Recordatorios</h3> <i style="justify-content:center; cursor: default;" class='bx bx-search'></i><input class="search"></div>
+                                <table class="scroll">
+                                    <thead>
+                                        <tr>
+                                            <th>Entidad o Beneficiario</th>
+                                            <th>Categoria</th>
+                                            <th>Cuenta</th>
+                                            <th>Banco</th>
+                                            <th>Monto</th>
+                                            <th>Moneda</th>  
+                                            <th>Frecuencia de pago</th>
+                                            <th>Notificación</th>
+                                            <th>Descripcion</th>
+                                            <th>Fecha de Pago</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="wrapper">
+                                        {% for data in data %}
+                                        <tr>
+                                            <td> <img src="{{ data.43 }}">
+                                                <p>{{ data.42 }}</p>
+                                            </td>
+                                            <td>{{ data.22 }}</td>
+                                            <td>{{ data.16 }}</td>
+                                            <td>{{ data.39 }}</td>
+                                            {% if data.45=='Ingresos' %}
+                                            <td style="color:#02E513">+  {{ data.4 }}</td>
+                                            <td style="color:#02E513">{{ data.24 }}</td>
+                                            {% else: %}
+                                            <td style="color:#F50808">-  {{ data.4 }}</td>
+                                            <td style="color:#F50808">{{ data.24 }}</td> 
+                                            {% endif %}
+                                            <td>{{ data.28 }}</td>
+                                            <td>{{ data.30 }}</td>
+                                            <td>{{ data.11 }}</td>
+                                            <td>{{ data.9 }}</td>
+                                            <td><span class="status completed">Pendiente</span></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <!-- BOTONES OLD VERSION
+                                    <div class="buttons">
+                                    <a href="">&laquo; Anterior</a>
+                                    <a href="">Siguiente &raquo;</a>
+                                </div>
+                                -->
+                            </div>
+                            <section class="magic">
+                                <!--Ultimas Cuentas Bancarias Afiliadas-->
+                                <div class="cuentasafiliadas">
+                                    {% if data2.0==null %}
+                                       <label style="color:#767676">No se han encontrado tarjetas afiliadas</label><br><br>
+                                    {% else: %}   
+                                       <label style="color:#02E513">Hay tarjetas afiliadas</label><br><br>
+                                    {% endif %}  
+                                    <div class="head">
+                                        <h3>Medios de Pago Afiliados</h3>
+                                        <a href="/cuentas"><i style="color: #ffffff;" class='bx bx-plus'></i></a>
+                                        <a style="cursor: default" class='bx bx-credit-card'></a>
+                                    </div>
+                                    <ul class="todo-list">
+                                        {% for data2 in data2 %}
+                                        <li class="cuentas-preview">
+                                            <img class="imgtodo" src="{{ data2.18 }}" alt="">
+                                            <div class="todo-monto">
+                                                <p class="todo-saldo">Saldo</p>
+                                                <span>{{ data2.8 }} <span href="">PEN</span></span>
+                                            </div>
+                                            <div class="todo-monto">
+                                                <p class="todo-saldo">Cuenta</p>
+                                                <span>{{ data2.4 }}</span>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div> 
+                            </section>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{url_for('static',filename='js/Sidebar.js')}}"></script>
+    <script src="{{url_for('static',filename='js/script.js')}}"></script>
+</body>
+</html>
+{% endblock %}

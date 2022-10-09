@@ -1,0 +1,690 @@
+/* Google Font Link */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Jost', sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.msg{
+    font-family:'Jost', sans-serif;
+    font-size: 24px;
+    text-transform:none;
+    color:#767676;
+}
+
+.msg2{
+    font-family:'Jost', sans-serif;
+    font-size: 24px;
+    text-transform: none;
+    color:#02E513;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 78px;
+    background: #0a0a0a;
+    padding: 6px 14px;
+    z-index: 99;
+    transition: all 0.5s ease;
+    min-height: 100%;
+}
+
+.sidebar.open {
+    width: 250px;
+}
+
+.sidebar .logo-details {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.sidebar .logo-details .icon {
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.sidebar .logo-details .logo_name {
+    color: #ff4800;
+    font-size: 20px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.sidebar.open .logo-details .icon,
+.sidebar.open .logo-details .logo_name {
+    opacity: 1;
+    margin-left: 16px;
+    margin-right: 3px;
+}
+
+.sidebar .logo-details #btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 22px;
+    transition: all 0.4s ease;
+    font-size: 23px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.sidebar.open .logo-details #btn {
+    text-align: right;
+}
+
+.sidebar i {
+    color: #ff4800;
+    height: 60px;
+    min-width: 50px;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+}
+
+.sidebar .options {
+    margin-top: 20px;
+    height: 100%;
+}
+
+.sidebar li {
+    position: relative;
+    margin: 8px 0;
+    list-style: none;
+}
+
+.sidebar li .tooltip {
+    position: absolute;
+    top: -20px;
+    left: calc(100% + 15px);
+    z-index: 3;
+    background: #ff4800;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: 0s;
+}
+
+.sidebar li:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sidebar.open li .tooltip {
+    display: none;
+}
+
+.sidebar input {
+    font-size: 15px;
+    color: #ff4800;
+    font-weight: 400;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    width: 50px;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+    background: #181818;
+}
+
+.sidebar.open input {
+    padding: 0 20px 0 50px;
+    width: 100%;
+}
+
+.sidebar .bx-search {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 22px;
+    background: #181818;
+    color: #ff4800;
+}
+
+.sidebar.open .bx-search:hover {
+    background: #181818;
+    color: #ff4800;
+}
+
+.sidebar .bx-search:hover {
+    background: #ff4800;
+    color: #0a0a0a;
+}
+
+.sidebar li a {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    background: #0a0a0a;
+    cursor: pointer;
+}
+
+.sidebar li a:hover {
+    background: #ff4800;
+}
+
+.sidebar li a .opciones-sidebar {
+    color: #ff4800;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.sidebar.open li a .opciones-sidebar {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar li a:hover .opciones-sidebar,
+.sidebar li a:hover i {
+    transition: all 0.5s ease;
+    color: #0a0a0a;
+}
+
+.sidebar li i {
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    border-radius: 12px;
+}
+
+.sidebar li.profile {
+    position: fixed;
+    height: 60px;
+    width: 78px;
+    left: 0;
+    bottom: -8px;
+    padding: 10px 14px;
+    background: #131313;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+
+.sidebar.open li.profile {
+    width: 250px;
+}
+
+.sidebar li .profile-details {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.sidebar li img {
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 10px;
+}
+
+.sidebar li.profile .name,
+.sidebar li.profile .job {
+    font-size: 15px;
+    font-weight: 400;
+    color: #ff4800;
+    white-space: nowrap;
+}
+
+.sidebar li.profile .job {
+    font-size: 12px;
+}
+
+.sidebar .profile #log_out {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: #0a0a0a;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 0px;
+    transition: all 0.5s ease;
+}
+
+.sidebar.open .profile #log_out {
+    width: 50px;
+    background: none;
+}
+
+
+/*Contenidos*/
+
+.contents {
+    position: relative;
+    background: #181818;
+    min-height: 100vh;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-flow: column;
+}
+
+.cuentas-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 90px;
+    justify-content: center;
+}
+
+.sidebar.open~.contents {
+    left: 250px;
+    width: calc(100% - 250px);
+    display: flex;
+    justify-content: center;
+}
+
+.content-active {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 18px;
+    display: grid;
+    justify-content: center;
+    visibility: visible;
+}
+
+@media (max-width: 420px) {
+    .sidebar li .tooltip {
+        display: none;
+    }
+}
+
+body {
+    background: #E2E2E2;
+}
+
+/*Afiliar Cuenta*/
+
+.card {
+    color: #ffffff;
+    width: 600px;
+    height: 520px;
+    background: #161616;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    margin-bottom: 10px;
+    margin-top: -30px;
+}
+
+.top {
+    width: 100%;
+    background: #FC4D12;
+    padding: 47px 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    position: relative;
+}
+
+.payment {
+    position: absolute;
+    font-size: 22px;
+    color: rgb(255, 255, 255);
+    font-family: 'Jost', sans-serif;
+    line-height: 25px;
+    font-weight: 600;
+    top: 32px;
+    left: 55px;
+}
+
+
+/*Estilos del Formulario*/
+
+form {
+    width: 550px;
+    margin: 0 auto;
+}
+
+.one {
+    width: 225px;
+}
+
+
+.one,
+.two,
+.five,
+.six,
+.seven {
+    float: left;
+    margin: 15px 40px 5px 0;
+}
+.five {
+    float: left;
+    width: 143px;
+}
+
+.three {
+    float: right;
+    width: 245px;
+    margin: 15px 40px 5px 0;
+}
+
+.four {
+    float: left;
+    width: 225px;
+    margin: 15px 40px 5px 0;
+}
+
+.eight {
+    width: 73px;
+    margin-right: 100px;
+}
+
+.two {
+    width: 245px;
+}
+
+input,
+select {
+    clear: both;
+    float: none;
+    display: block;
+    border: 1px solid rgb(197, 197, 197);
+    padding: 14px 15px;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    background: #FFF;
+}
+
+select {
+    padding-left: 15px;
+}
+
+::-webkit-input-placeholder {
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    padding-left: 0px;
+}
+
+:-moz-placeholder {
+    /* older Firefox*/
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    padding-left: 0px;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    padding-left: 0px;
+}
+
+:-ms-input-placeholder {
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    padding-left: 0px;
+}
+
+label {
+    color: rgb(151, 151, 151);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0px;
+    font-family: 'ubuntu', sans-serif;
+    text-transform: uppercase;
+    margin: 15px 0;
+    display: block;
+}
+
+input[type=text]:focus,
+input[type=number]:focus,
+textarea:focus,
+select:focus {
+    box-shadow: none;
+    outline: none;
+    border: 1px solid #FC4D12;
+}
+
+/* Boton Añadir*/
+
+div.buttons {
+    margin-top: 24px;
+    display: inline-block;
+    margin-left: 200px;
+}
+
+div.buttons input {
+    text-decoration: none;
+    color: white;
+    background: orangered;
+    padding: 7px 19px;
+    border-radius: 4px;
+    font-size: 20px;
+    border: 1p solid #fff;
+}
+
+div.buttons input:hover {
+    cursor: pointer;
+    background: rgb(197, 53, 0);
+}
+
+.card-body{
+    margin: 0px 50px;
+}
+/*Cuentas Afiliadas*/
+
+.cuentasafiliadas {
+    border: 1px solid #ffffff;
+    border-right: #ffffff solid 15px;
+    justify-content: center;
+    align-items: center;
+    height: 480px;
+    min-width: 300px;
+    width: 700px;
+    background-color: #161616;
+    padding: 28px;
+    border-radius: 25px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.cuentasafiliadas .todo-list {
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+    width: 590px;
+    margin: 10px;
+    max-height: 360px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #272727;
+    border-radius: 1px;
+}
+
+.cuentasafiliadas .todo-list li {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: var(--grey);
+    border-radius: 5px;
+    padding: 14px 20px;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cuentasafiliadas .todo-list li .bx {
+    cursor: pointer;
+}
+
+.cuentasafiliadas .todo-list li.cuenta-afiliada {
+    color: #ffffff;
+    background-color: #161616;
+    border-left: 40px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    width: 480px;
+    height: 90px;
+    font-size: 15px;
+    padding: 25px;
+}
+
+.cuentasafiliadas .todo-list li:last-child {
+    margin-bottom: 10px;
+}
+
+.imgtodo {
+    border: 1px solid #1a1a1a;
+    width: 56px;
+    height: 56px;
+    border-radius: 5px;
+    object-fit: cover;
+    align-items: left;
+}
+
+box-icon.iconbox {
+    margin-right: 10px;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    margin-bottom: 24px;
+}
+
+.head h3 {
+    color: #ffffff;
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.head .bx {
+    cursor: pointer;
+}
+
+.delete{
+    font-size: 15px;
+    padding: 6px 16px;
+    color: var(--light);
+    border-radius: 20px;
+    font-weight: 700;
+    color:#ffffff ;
+    background: #F50808;
+    text-decoration: none;
+}
+
+.sidebar i.bx.bx-log-out{
+    display: block;
+    color: #ff4800;
+    height: 60px;
+    min-width: 50px;
+    text-align: center;
+    line-height: 60px;
+    margin-left: 11px;
+}
+
+/*TABLE SCROLL*/
+table {
+	border-collapse: collapse;
+	width: 700px;
+	table-layout: fixed;
+    color: #ffffff;
+    background-color: #161616;
+}
+th {
+	padding: 5px;
+	min-width: 143px;
+}
+
+td{
+    padding: 5px;
+	min-width: 143px;
+}
+
+thead tr {
+	background: none;
+	color: #eee;
+	display: block;
+	position: relative;
+}
+tbody {
+    background-color: #111111;
+    border: 1px solid #ffffff;
+	display: block;
+	height: 300px;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    margin-bottom: 24px;
+}
+
+div.table-transferencias{
+    margin: 10px;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background-color: #161616;
+    min-width: 650px;
+    height: 430px;
+    overflow-y: hidden;
+    border-radius: 7px;
+    background: var(--light);
+    padding: 24px;
+    overflow-x: auto;
+}
+
+div.card-container{
+    margin: 10px;
+    align-items: center;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/Cliente.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/CustomScrollbar.css')}}">
+    <link href="{{url_for('static',filename='css/intlTelInput.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static',filename='img/favicon.ico')}}" type="image/x-icon">
+    <title>Login & Registro</title>
+</head>
+<header>
+    <div class="container__menu">
+        <div class="logo">
+            <img src="{{url_for('static',filename='img/Logo.png')}}" alt="">
+        </div>
+        <div class="menu">
+            <nav>
+                <ul>
+                    <li><a href="/" id="selected">Regresar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<body>
+    <div class="alerta-top">
+        {% with msg=get_flashed_messages() %}
+        {% if msg %}
+        {% for msg in msg %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>¡Hola!</strong> {{ msg }}
+              <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+        <div class="signup">
+            <form action="/signup" method="POST">
+                <label class="signupbox" for="chk" aria-hidden="true">Sign Up</label>
+                <input type="text" name="txtname" placeholder="Nombres" required="" pattern="[a-zA-Z]+" onkeydown="return /[a-z]/i.test(event.key)">
+                <input type="text" name="txtpat" placeholder="Apellido Paterno" required="" onkeydown="return /[a-z]/i.test(event.key)">
+                <input type="text" name="txtmat" placeholder="Apellido Materno" required="" onkeydown="return /[a-z]/i.test(event.key)">
+                <input maxlength="15" minlength="9" type="tel" name="txtphone" id="phone" placeholder="Telefono" required="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                <input type="email" name="txtmail" placeholder="Email" required="">
+                <input type="password" name="txtpass" placeholder="Contraseña" required="">
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="login">
+            <form action="/login" method="POST">
+                <label class="loginbox" for="chk" aria-hidden="true">Login</label>
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="Password" name="pswd" placeholder="Contraseña" required="">
+                <button>Login</button>
+            </form>
+        </div>
+    </div>
+    <!--Jquery Librería -->
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+    <!--Script para prefijo por IP -->
+    <script src="{{url_for('static',filename='js/intlTelInput.js')}}"></script>
+    <script>
+        var input = document.querySelector("#phone");
+        intlTelInput(input, {
+            initialCountry: "auto",
+            geoIpLookup: function(success, failure) {
+                $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "";
+                    success(countryCode);
+                });
+            },
+            utilsScript: "{{url_for('static',filename='js/utils.js')}}"
+        })
+    </script>
+</body>
+
+</html>

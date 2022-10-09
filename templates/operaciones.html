@@ -1,0 +1,199 @@
+{% extends 'layout_ope_record.html' %}
+{% block link %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/Operaciones.css')}}" />
+{% endblock %}
+{% block title %}
+<title>Phoenix - Operaciones</title>
+{% endblock %}
+{% block body %}
+<div class="contents">
+  <div class="alerta-top">
+    {% with msg=get_flashed_messages() %}
+    {% if msg %}
+    {% for msg in msg %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>¡Hola!</strong> {{ msg }}
+      <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  </div>
+  <div class="contentt content-active">
+    <div class="containermain">
+      <div id="content">
+        <main>
+          <!--Reemplazar-->
+          <ul class="box-info"></ul>
+          <!--OPERACIONES PRINCIPAL-->
+          <div class="operaciones-tabla">
+            <div class="order">
+              {% if data.0==null %}
+              <label style="color:#767676">No se han encontrado registros de operacion</label><br><br>
+              {% else: %}
+              <label style="color:#02E513">Hay registros de operacion</label><br><br>
+              {% endif %}
+              <div class="head">
+                <h3>Historial de Operaciones</h3>
+                <i style="justify-content: center; cursor: default" class="bx bx-search"></i>
+                <input class="search" /><input type="checkbox" id="btn-modal" />
+                <label for="btn-modal" class="lbl-modal">+ Nuevo</label>
+                <!--MODAL-->
+                <div class="modal">
+                  <div class="contenedor-modal">
+                    <header>Nueva Operación</header>
+                    <label for="btn-modal">X</label>
+                    <form action="/insert_gasto" method="POST">
+                      <div class="contenido">
+                        <!--Primera Linea-->
+                        <div class="cat-ben">
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Operación</span>
+                            <div class="custom-select">
+                              <select name="operacion">
+                                <option value="0">Seleccionar:</option>
+                                <option value="1">Ingresos</option>
+                                <option value="2">Gasto</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Categoria</span>
+                            <div class="custom-select">
+                              <select name="categoria">
+                                <option value="0">Seleccionar:</option>
+                                <option value="1">Transporte</option>
+                                <option value="2">Vehiculos</option>
+                                <option value="3">Comidas y bebidas</option>
+                                <option value="4">Vivienda</option>
+                                <option value="5">Compras</option>
+                                <option value="6">Inversiones</option>
+                                <option value="7">Gastos financieros</option>
+                                <option value="8">Entretenimiento</option>
+                                <option value="9">Educacion</option>
+                                <option value="10">Viajes</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span for="fecha-op-modal" class="op-nueva-getdatos">Fecha</span>
+                            <input type="date" id="fecha-op-modal" name="fecha" min="2022-01-01" max="2022-12-31" required="El campo de fecha es requerido.">
+                          </div>
+                        </div>
+                        <!--Segunda Linea-->
+                        <div class="cat-ben">
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Beneficiario</span>
+                            <div class="custom-select">
+                              <select name="beneficiario">
+                                <option value="0">Seleccionar:</option>
+                                {% for data3 in data3 %}
+                                <option value="{{ data3.0 }}">{{ data3.1 }}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                          </div>
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Cuenta</span>
+                            <div class="custom-select">
+                              <select name="cuenta">
+                                <option value="0">Seleccionar:</option>
+                                {% for data2 in data2 %}
+                                <option value="{{ data2.0 }}">{{ data2.4 }}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <!--Tercera Linea-->
+                        <div class="cat-ben">
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Descripcion</span>
+                            <input name="nombre" placeholder="Ingresa una descripcion" type="text" required="El campo de descripcion es requerido.">
+                          </div>
+                        </div>
+                        <!--Cuarta Linea-->
+                        <div class="cat-ben">
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Moneda</span>
+                            <div class="custom-select">
+                              <select name="moneda">
+                                <option value="0">Seleccionar:</option>
+                                <option value="1">PEN</option>
+                                <option value="2">USD</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <!--Quinta Linea-->
+                        <div class="cat-ben">
+                          <div class="categoria-modal">
+                            <span class="op-nueva-getdatos">Monto</span>
+                            <input class="inputcuenta" placeholder="00.00" type="text" name="monto"
+                              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required="El campo de monto es requerido"/>
+                          </div>
+                        </div>
+                        <!--Sexta Linea-->
+                        <div class="buttons">
+                          <input type="submit" value="Enviar" />
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <table class="scroll">
+              <thead>
+                <tr>
+                  <th>Entidad o Beneficiario</th>
+                  <th>Categoria</th>
+                  <th>Cuenta</th>
+                  <th>Banco</th>
+                  <th>Monto</th>
+                  <th>Moneda</th>
+                  <th>Descripcion</th>
+                  <th>Fecha de Pago</th>
+                  <th>Estado</th>
+                  <th>Extra</th>
+                </tr>
+              </thead>
+              <tbody class="wrapper">
+                {% for data in data %}
+                <tr>
+                  <td>
+                    <img src="{{ data.36 }}" />
+                    <p>{{ data.35 }}</p>
+                  </td>
+                  <td>{{ data.21 }}</td>
+                  <td>{{ data.15 }}</td>
+                  <td>{{ data.32 }}</td>
+                  {% if data.10 =='Ingresos' %}
+                  <td style="color:#02E513">+ {{ data.5 }}</td>
+                  <td style="color:#02E513">{{ data.23 }}</td>
+                  {% else: %}
+                  <td style="color:#F50808">- {{ data.5 }}</td>
+                  <td style="color:#F50808">{{ data.23 }}</td>
+                  {% endif %}
+                  <td>{{ data.7 }}</td>
+                  <td>{{ data.8 }}</td>
+                  <td><span class="status completed">Pagado</span></td>
+                  <td><a class="delete" href="/delete_movimiento/{{ data.0 }}">Delete</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+      </main>
+    </div>
+  </div>
+</div>
+</div>
+<script src="{{url_for('static',filename='js/Sidebar.js')}}"></script>
+<script src="{{url_for('static',filename='js/script.js')}}"></script>
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phoenix</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/Index.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/CustomScrollbar.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static',filename='img/favicon.ico')}}" type="image/x-icon">
+</head>
+<header>
+    <div class="container__menu">
+        <div class="logo">
+            <img src="{{url_for('static',filename='img/Logo.png')}}" alt="">
+        </div>
+        <div class="menu">
+            <nav>
+                <ul>
+                    <li><a href="#" id="selected">Inicio</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<body>
+    <main>
+        <div class="container__cover">
+            <div class="cover">
+                <div class="text">
+                    <h1>Planifique y maneje sus finanzas de forma activa, fácil y rápida</h1>
+
+                    <p>Con Phoenix podrás organizar de manera eficaz tus gastos y recordatorios de pagos, no esperes más y únete! </p>
+
+                    <input onclick="location.href ='/client';" type="button" value="Unirme ya!">
+                </div>
+
+                <div class="svg">
+                    <img src="{{url_for('static',filename='img/Money income-amico.svg')}}" alt="">
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+.modal {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.884);
+    transition: all 500ms ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#btn-modal:checked~.modal {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contenedor-modal {
+    width: auto;
+    height: auto;
+    margin: auto;
+    background-color: #181818;
+    border-radius: 10px;
+    border: solid 2px #fff;
+    transition: all 500ms ease;
+    position: relative;
+    transform: translateY(-30%);
+}
+
+#btn-modal:checked~.modal .contenedor-modal {
+    transform: translateY(0%);
+}
+
+.contenedor-modal header {
+    padding: 10px;
+    background: #FC4D12;
+    border-top: 10px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    font-size: 13px;
+    color: #fff;
+}
+
+.contenedor-modal label {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: #FC4D12;
+    background-color: #fff;
+    width: 15px;
+    border-radius: 6px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.contenido {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.contenido h3 {
+    margin-bottom: 10px;
+}
+
+.contenido p {
+    margin-bottom: 7px;
+}
+
+#btn-modal {
+    visibility: hidden;
+    display: none;
+    background-color: #FC4D12;
+}
+
+@media only screen and (min-width:320px) and (max-width:768px) {
+    .contenedor-modal {
+        width: 95%;
+    }
+}
+
+.lbl-modal {
+    padding: 10px;
+    margin: 0px;
+    justify-content: center;
+    color: #fff;
+    background-color: #FC4D12;
+    font-size: 10px;
+    text-align: center;
+    width: 90px;
+    height: auto;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+span.op-nueva-getdatos {
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div.modal-info-sections-selectdatos {
+    font-size: 3px;
+    margin-bottom: 10px;
+}
+
+div.select {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+div.cat-ben {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.inputcuenta {
+    outline-style: none;
+    font-family: var(--poppins);
+    font-weight: bold;
+    color: #181818;
+    background-color: #f0f0f0;
+    border: 1px solid rgb(141, 141, 141);
+    border-radius: 3px;
+    padding: 5px;
+    width: 300px;
+    text-align: center;
+    justify-content: center;
+}
+
+div.categoria-modal {
+    margin: 0px 10px;
+}
+
+div.beneficiario-modal {
+    margin: 0px 10px;
+}
+
+input.text {
+    outline-style: none;
+    text-align: center;
+}
+
+div.modal-info-sections {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+div.custom-select1 select option{
+    overflow: hidden;
+    display:none;
+}

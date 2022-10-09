@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/CustomScrollbar.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/Cuentas.css')}}" />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100italic,100,300,300italic,400italic,500,500italic,700,700italic,900,900italic">
+    <link rel="shortcut icon" href="{{url_for('static',filename='img/favicon.ico')}}" type="image/x-icon" />
+    <title>Phoenix - Cuentas</title>
+</head>
+
+    <div class="sidebar">
+        <div class="logo-details">
+            <img class="icon" src="{{url_for('static',filename='/img/favicon-16x16.png')}}" />
+            <div class="logo_name">Phoenix</div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <ul class="options">
+            <li class="option option-active">
+                <a href="/dashboard">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="opciones-sidebar">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li class="option">
+                <a href="/operaciones">
+                    <i class="bx bx-world"></i>
+                    <span class="opciones-sidebar">Operaciones</span>
+                </a>
+                <span class="tooltip">Operaciones</span>
+            </li>
+            <li class="option">
+                <a href="/transferencias">
+                    <i class="bx bx-transfer"></i>
+                    <span class="opciones-sidebar">Transferencias</span>
+                </a>
+                <span class="tooltip">Transferencias</span>
+            </li>
+
+            <li class="option">
+                <a href="/recordatorios">
+                    <i class="bx bx-calendar-edit"></i>
+                    <span class="opciones-sidebar">Recordatorios</span>
+                </a>
+                <span class="tooltip">Recordatorios</span>
+            </li>
+            <li class="option">
+                <a href="/cuentas">
+                    <i class="bx bx-credit-card"></i>
+                    <span class="opciones-sidebar">Cuentas</span>
+                </a>
+                <span class="tooltip">Cuentas</span>
+            </li>
+            <li class="option">
+                <a href="/ajustes">
+                    <i class="bx bx-cog"></i>
+                    <span class="opciones-sidebar">Ajustes</span>
+                </a>
+                <span class="tooltip">Ajustes</span>
+            </li>
+            <li class="profile">
+                <div class="profile-details">
+                    <img src="{{url_for('static',filename='img/user.jpg')}}" alt="profileImg" />
+                    <div class="name_job">
+                        <div class="name">Usuario</div>
+                        <div class="job">{{ email }}</div>
+                    </div>
+                </div>
+                <a id="log_out" href="{{url_for('logout')}}"><i class='bx bx-log-out'></i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="contents">
+        <div class="alerta-top">
+            {% with msg=get_flashed_messages(with_categories=true) %}
+            {% if msg %}
+            {% for category, msg in msg %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                  <strong>¡Hola!</strong> {{ msg }}
+                  <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <div class="cuentas-container">
+            <!--Ultimas Cuentas Bancarias Afiliadas-->
+            <div class="cuentasafiliadas">
+                {% if data.0==null %} 
+                    <label class="msg">No se han encontrado tarjetas afiliadas</label><br>
+                {% else: %}
+                    <label class="msg2">Hay tarjetas afiliadas</label><br>
+                {% endif %}
+                <div class="head">
+                    <h3>Medios de Pago Afiliados</h3>
+                </div>
+                <ul class="todo-list">
+                    {% for data in data %}
+                    <li class="cuenta-afiliada">
+                        <img class="imgtodo" src="{{ data.18 }}" alt="">
+                        <div class="todo-monto">
+                            <p class="todo-saldo">Saldo</p>
+                            <span>{{ data.8 }}<span href=""> PEN</span></span>&nbsp;
+                        </div>
+                        <div class="todo-monto">
+                            <p class="todo-saldo">Cuenta</p>
+                            <span>{{ data.4 }}</span>
+                        </div>
+                        <box-icon class="iconbox" name='credit-card-alt' type='solid'></box-icon>
+                        <a class="delete" href="/delete_cuenta/{{ data.0 }}">Delete</a>
+                    </li>  
+                    {% endfor %}
+                </ul>
+            </div>      
+            <div class="card">   
+                <div class="top">                  
+                    <div class="payment">Afiliar Cuenta</div>
+                </div>
+                <div class="card-body">
+                    <form action="/insert_cuenta" method="POST">
+                        <input type="hidden" name="user" value="{{ data2.0 }}">
+                        <div class="one">
+                            <label for=''>Nombre del propietario</label>
+                            <input placeholder='Nombres y Apellidos' type='text' name='propietario' onkeydown="return /[a-z]/i.test(event.key)" required>
+                        </div>
+                        <div class="two">
+                            <label for=''>Número de tarjeta</label>
+                            <input maxlength='16' required placeholder='xxxx xxxx xxxx xxxx' type='text' name='tarjeta' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                        </div>
+                        <div class="three">
+                            <label for=''>Fecha de Expiración</label>
+                            <select name='mes'>
+                                <option value="0">Seleccionar:</option>
+                                <option value="Enero">Enero</option>
+                                <option value="Febrero">Febrero</option>
+                                <option value="Marzo">Marzo</option>
+                                <option value="Abril">Abril</option>
+                                <option value="Mayo">Mayo</option>
+                                <option value="Junio">Junio</option>
+                                <option value="Julio">Julio</option>
+                                <option value="Agosto">Agosto</option>
+                                <option value="Septiembre">Septiembre</option>
+                                <option value="Octubre">Octubre</option>
+                                <option value="Noviembre">Noviembre</option>
+                                <option value="Diciembre">Diciembre</option>
+                            </select>
+                        </div>
+                        <div class="four">
+                            <!--Label en blanco-->
+                            <label for=''>&#x200b;</label>
+                            <select name="año">
+                                <option value="0">Seleccionar:</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                            </select>
+                        </div>
+                        <div class="five">
+                            <label for=''>CVV</label>
+                            <input maxlength='3' required placeholder='000' type='text' name='cvv' oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                        </div>
+                        <div class="six">
+                            <label for=''>Banco</label>
+                            <select name='banco'>
+                                <option value="0">Seleccionar:</option>
+                                <option value="1">BBVA</option>
+                                <option value="2">Banco de la nacion</option>
+                                <option value="3">BCP</option>
+                                <option value="4">Scotiabank</option>
+                                <option value="5">Interbank</option>
+                                <option value="6">BanBif</option>
+                            </select>
+                        </div>
+                        <div class="seven">
+                            <label for=''>Monto</label>
+                            <input maxlength='20' required placeholder='00.00' type='text' name="monto" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                        </div>
+                        <div class="eight">
+                            <!--Label en blanco-->
+                            <label for=''>&#x200b;</label>
+                            <div class="buttons">
+                                <input type='submit' value='Enviar'/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{url_for('static',filename='js/Sidebar.js')}}"></script>
+    <script src="{{url_for('static',filename='js/script.js')}}"></script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+  <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js')}}"></script>
+  <script src="{{url_for('static',filename='js/SelectBox.js')}}"></script>
+  {% block link %}
+  <link rel="stylesheet" href="{{url_for('static',filename='css/Recordatorios.css')}}" />
+  {% endblock %}
+  <link rel="stylesheet" href="{{url_for('static',filename='css/Panel.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='css/CustomScrollbar.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='css/Modal-Operaciones.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='css/SelectBox.css')}}" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="{{url_for('static',filename='img/favicon.ico')}}" type="image/x-icon" />
+  {% block title %}
+  <title>Phoenix - Recordatorios</title>
+  {% endblock %}
+</head>
+
+<body>
+  <!--SIDEBAR-->
+  <div class="sidebar">
+    <div class="logo-details">
+      <img class="icon" src="{{url_for('static',filename='/img/favicon-16x16.png')}}" />
+      <div class="logo_name">Phoenix</div>
+      <i class="bx bx-menu" id="btn"></i>
+    </div>
+    <ul class="options">
+      <li class="option option-active">
+        <a href="/dashboard">
+          <i class="bx bx-grid-alt"></i>
+          <span class="opciones-sidebar">Dashboard</span>
+        </a>
+        <span class="tooltip">Dashboard</span>
+      </li>
+      <li class="option">
+        <a href="/operaciones">
+          <i class="bx bx-world"></i>
+          <span class="opciones-sidebar">Operaciones</span>
+        </a>
+        <span class="tooltip">Operaciones</span>
+      </li>
+      <li class="option">
+        <a href="/transferencias">
+          <i class="bx bx-transfer"></i>
+          <span class="opciones-sidebar">Transferencias</span>
+        </a>
+        <span class="tooltip">Transferencias</span>
+      </li>
+      <li class="option">
+        <a href="/recordatorios">
+          <i class="bx bx-calendar-edit"></i>
+          <span class="opciones-sidebar">Recordatorios</span>
+        </a>
+        <span class="tooltip">Recordatorios</span>
+      </li>
+      <li class="option">
+        <a href="/cuentas">
+          <i class="bx bx-credit-card"></i>
+          <span class="opciones-sidebar">Cuentas</span>
+        </a>
+        <span class="tooltip">Cuentas</span>
+      </li>
+      <li class="option">
+        <a href="/ajustes">
+          <i class="bx bx-cog"></i>
+          <span class="opciones-sidebar">Ajustes</span>
+        </a>
+        <span class="tooltip">Ajustes</span>
+      </li>
+      <li class="profile">
+        <div class="profile-details">
+          <img src="{{url_for('static',filename='img/user.jpg')}}" alt="profileImg" />
+          <div class="name_job">
+            <div class="name">Usuario</div>
+            <div class="job">{{ email }}</div>
+          </div>
+        </div>
+        <a id="log_out" href="{{url_for('logout')}}"><i class='bx bx-log-out'></i></a>
+      </li>
+    </ul>
+  </div>
+  {% block body %}
+  {% endblock %}

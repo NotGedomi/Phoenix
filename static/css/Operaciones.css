@@ -1,0 +1,496 @@
+*{
+    outline-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+:root {
+    --poppins: 'Poppins', sans-serif;
+    --lato: 'Lato', sans-serif;
+    --light: #F9F9F9;
+    --blue: #3C91E6;
+    --light-blue: #CFE8FF;
+    --grey: #eee;
+    --dark-grey: #AAAAAA;
+    --dark: #342E37;
+    --red: #DB504A;
+    --yellow: #FFCE26;
+    --light-yellow: #FFF2C6;
+    --orange: #FD7238;
+    --light-orange: #FFE0D3;
+}
+
+/* MAIN */
+
+#content main {
+    width: 100%;
+    padding: 0px 24px;
+    font-family: var(--poppins);
+    overflow-y: auto;
+}
+
+#content main .head-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 16px;
+    flex-wrap: wrap;
+}
+
+#content main .head-title .left h1 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+#content main .box-info {
+    display: inline-flex;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 24px;
+    margin-top: 36px;
+}
+
+#content main .box-info li {
+    padding: 20px;
+    background: linear-gradient(338deg, rgba(255, 97, 43, 1) 0%, rgba(233, 11, 0, 1) 100%);
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    border-radius: 10px;
+}
+
+#content main .box-info li .bx {
+    width: 100px;
+    height: 80px;
+    border-radius: 10px;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: #1f1f1f solid 5px;
+}
+
+#content main .box-info li:nth-child(1) .bx {
+    background: #181818;
+    color: #ffffff;
+}
+
+#content main .box-info li:nth-child(2) .bx {
+    background: #181818;
+    color: #ffffff;
+}
+
+#content main .box-info li:nth-child(3) .bx {
+    background: #181818;
+    color: #ffffff;
+}
+
+#content main .box-info li .text h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+}
+
+#content main .box-info li .text p {
+    color: rgb(36, 36, 36);
+    font-weight: bold;
+}
+
+#content main .operaciones-tabla {
+    background-color: #181818;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 24px;
+    margin-top: 24px;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+}
+
+#content main .operaciones-tabla>div {
+    border-radius: 20px;
+    background-color: #181818;
+    padding: 24px;
+    overflow-x: auto;
+}
+
+#content main .operaciones-tabla .head {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    margin-bottom: 24px;
+}
+
+#content main .operaciones-tabla .head h3 {
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#content main .operaciones-tabla .head .bx {
+    cursor: pointer;
+}
+
+#content main .operaciones-tabla .order {
+    border: 1px solid #ffffff;
+    flex-grow: 1;
+    height: 550px;
+}
+
+#content main .operaciones-tabla .order table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#content main .operaciones-tabla .order table th {
+    padding-bottom: 12px;
+    font-size: 13px;
+    text-align: center;
+    border-bottom: 1px solid var(--grey);
+}
+
+#content main .operaciones-tabla .order table td {
+    padding: 15px 0;
+    font-size: 17px;
+    text-align: center;
+}
+
+#content main .operaciones-tabla .order table tr td:first-child {
+    display: flex;
+    align-items: center;
+    grid-gap: 12px;
+    padding-left: 9px;
+    width: 140px;
+}
+
+
+#content main .operaciones-tabla .order table td img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    align-items: center;
+}
+
+#content main .operaciones-tabla .order table tbody tr:hover {
+    background: #1f1f1f;
+}
+
+#content main .operaciones-tabla .order table tr td .status {
+    font-size: 10px;
+    padding: 6px 16px;
+    color: var(--light);
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+#content main .operaciones-tabla .order table tr td .status.completed {
+    color: #181818;
+    background: #ffffff;
+}
+
+#content main .operaciones-tabla .order table tr td .status.process {
+    background: red;
+}
+
+#content main .operaciones-tabla .order table tr td .status.pending {
+    background: orangered;
+}
+
+#content main .operaciones-tabla .todo {
+    border-top: #ff4314 solid 10px;
+    margin: 10px;
+    justify-content: center;
+    font-size: 10px;
+    height: 320px;
+    width: auto;
+    background-color: #ffffff;
+    padding: 28px;
+    border-radius: 18px;
+}
+
+#content main .operaciones-tabla .todo .todo-list {
+    width: auto;
+    margin: 10px;
+}
+
+#content main .operaciones-tabla .todo .todo-list li {
+    width: 100%;
+    margin-bottom: 16px;
+    background: var(--grey);
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#content main .operaciones-tabla .todo .todo-list li .bx {
+    cursor: pointer;
+}
+
+#content main .operaciones-tabla .todo .todo-list li.completed {
+    border-left: 3px solid rgba(255, 97, 43, 1);
+    width: 325px;
+    height: 50px;
+    font-size: 15px;
+}
+
+#content main .operaciones-tabla .todo .todo-list li.not-completed {
+    border-left: 10px solid #000;
+}
+
+#content main .operaciones-tabla .todo .todo-list li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Table Scrollbar */
+
+table.scroll tbody{
+    display: block;
+    width: 1200px
+}
+table.scroll thead {
+    display: block;
+    width: 1200px
+}
+
+table.scroll tbody {
+    height: 290px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tbody {
+    border-top: 2px solid black;
+}
+
+.Gasto {
+    background-color: #ff1d1d;
+    color: #ffffff;
+    font-style: oblique;
+    font-family: var(--poppins);
+    font-weight: bold;
+    font-size: 10px;
+    padding: 4px 15px;
+    border-radius: 10px;
+    border: solid 1px rgb(255, 255, 255);
+}
+
+.Ingreso {
+    background-color: rgb(0, 139, 53);
+    color: #ffffff;
+    font-style: oblique;
+    font-family: var(--poppins);
+    font-weight: bold;
+    font-size: 10px;
+    padding: 4px 15px;
+    border-radius: 10px;
+    border: solid 1px #fff;
+}
+
+
+/*Cuentas Afiliadas*/
+
+#content main .operaciones-tabla .cuentasafiliadas-principal {
+    border-right: #505050 solid 15px;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: auto;
+    background-color: #fff;
+    padding: 28px;
+    border-radius: 25px;
+}
+
+#content main .operaciones-tabla .cuentasafiliadas-principal .todo-list {
+    width: 320px;
+    margin: 10px;
+    max-height: 100px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#content main .operaciones-tabla .cuentasafiliadas-principal .todo-list li {
+    width: 100%;
+    margin-bottom: 10px;
+    background: var(--grey);
+    border-radius: 5px;
+    padding: 14px 20px;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#content main .operaciones-tabla .cuentasafiliadas-principal .todo-list li .bx {
+    cursor: pointer;
+}
+
+#content main .operaciones-tabla .cuentasafiliadas-principal .todo-list li.efectivo {
+    border-right: 40px solid rgb(0, 139, 53);
+    width: 285px;
+    height: 40px;
+    font-size: 15px;
+}
+
+#content main .operaciones-tabla .cuentasafiliadas-principal .todo-list li.not-efectivo {
+    border-right: 40px solid rgb(0, 154, 192);
+    width: 285px;
+    height: 40px;
+    font-size: 15px;
+}
+
+#content main .operaciones-tabla .cuentasafiliadas-principal .todo-list li:last-child {
+    margin-bottom: 0;
+}
+
+.magic {
+    background: #181818;
+}
+
+.search {
+    outline-style: none;
+    font-family: var(--poppins);
+    font-weight: bold;
+    color: #2b2b2b;
+    background-color: #f0f0f0;
+    display: flex;
+    border: 1px solid rgb(141, 141, 141);
+    border-radius: 3px;
+    padding: 5px;
+    width: 500px
+}
+
+p.trans-date {
+    color: #6e6e6e;
+    font-size: 11px;
+    text-align: center;
+}
+
+
+/*Buttons Next and Previous*/
+
+div.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+div.buttons input {
+    margin: 10px;
+    text-decoration: none;
+    color: white;
+    background: orangered;
+    padding: 7px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    border: 1px solid #fff;
+}
+
+div.buttons input:hover {
+    cursor: pointer;
+    background: rgb(197, 53, 0);
+}
+
+
+/* Button Agregar Operaciones*/
+
+div.nueva-op {
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+}
+
+div.nueva-op a {
+    margin: 0px;
+    text-decoration: none;
+    color: white;
+    background: orangered;
+    padding: 7px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+}
+
+div.nueva-op a:hover {
+    background: rgb(197, 53, 0);
+}
+
+table.scroll tbody.wrapper {
+    max-height: 510px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  
+table.scroll tbody td,
+table.scroll thead th {
+    width: 220px;
+  }
+
+.delete{
+    font-size: 15px;
+    padding: 6px 16px;
+    color: var(--light);
+    border-radius: 20px;
+    font-weight: 700;
+    color:#ffffff ;
+    background: #F50808;
+} 
+
+table.scroll thead th:nth-child(2) {
+    width: 120px;
+    padding-left: 40px;
+}
+
+table.scroll thead th:nth-child(3) {
+    width: 120px;
+    padding-left: 90px;
+    text-align: center;
+}
+
+table.scroll thead th:nth-child(4) {
+    width: 120px;
+    padding-left: 110px;
+    text-align: center;
+}
+
+table.scroll thead th:nth-child(5) {
+    width: 120px;
+    padding-left: 90px;
+    text-align: center;
+}
+
+table.scroll thead th:nth-child(6) {
+    width: 120px;
+    padding-left: 40px;
+    text-align: center;
+}
+
+table.scroll thead th:nth-child(7) {
+    width: 120px;
+    padding-left: 40px;
+    text-align: center;
+}
+
+table.scroll thead th:nth-child(8) {
+    width: 120px;
+    padding-left: 40px;
+    text-align: center;
+}
+
+.order table tr td:nth-child(10) {
+    width: 140px;
+}
+
+table.scroll thead th:nth-child(9) {
+    padding-left: 30px;
+    text-align: center;
+}
